@@ -9,29 +9,54 @@ import {
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+`
+const Main = styled.div`
+  flex-grow: 1;
+  overflow: auto;
+`
+const Nav = styled.div`
+  > ul {
+    display: flex;
+    //justify-content: space-between;
+    align-items: center;
+    > li {
+      flex: auto;
+      text-align: center;
+      padding: 1rem;
+      background-color: #409EFF;
+      &:hover {
+        background-color: rgb(102,177,255);
+      }
+    }
+      
+  }
 `
 
 function App() {
     return (
         <Router>
             <Wrapper>
-                <Switch>
-                    <Route path="/tags">
-                        <Tags/>
-                    </Route>
-                    <Route path="/money">
-                        <Money/>
-                    </Route>
-                    <Route path="/statistics">
-                        <Statistics/>
-                    </Route>
-                    <Redirect exact from="/" to ="/money" />
-                    <Route path="*">
-                        <NoMatch />
-                    </Route>
-                </Switch>
-                <nav>
+                <Main>
+                    <Switch>
+                        <Route path="/tags">
+                            <Tags/>
+                        </Route>
+                        <Route path="/money">
+                            <Money/>
+                        </Route>
+                        <Route path="/statistics">
+                            <Statistics/>
+                        </Route>
+                        <Redirect exact from="/" to="/money"/>
+                        <Route path="*">
+                            <NoMatch/>
+                        </Route>
+                    </Switch>
+                </Main>
+                <Nav>
                     <ul>
                         <li>
                             <Link to="/tags">标签页</Link>
@@ -40,10 +65,10 @@ function App() {
                             <Link to="/money">记账页</Link>
                         </li>
                         <li>
-                            <Link to="/statistics">统计页  </Link>
+                            <Link to="/statistics">统计页 </Link>
                         </li>
                     </ul>
-                </nav>
+                </Nav>
 
             </Wrapper>
         </Router>
@@ -55,6 +80,7 @@ function NoMatch() {
         <div>页面不存在呢~</div>
     )
 }
+
 function Tags() {
     return <h2>标签页面</h2>;
 }
@@ -66,4 +92,5 @@ function Money() {
 function Statistics() {
     return <h2>统计页面</h2>;
 }
+
 export default App;
