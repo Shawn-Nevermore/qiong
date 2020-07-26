@@ -3,7 +3,6 @@ import {Link} from "react-router-dom";
 import React from "react";
 import Icon from "./Icon";
 
-
 const NavWrapper = styled.div`
   line-height: 24px;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
@@ -25,25 +24,24 @@ const NavWrapper = styled.div`
   }
 `
 
+const links = [
+  ['/tags', 'tag'],
+  ['/money', 'add'],
+  ['/statistics', 'chart-pie']
+];
+const renderLinks = links.map(item =>
+  <li>
+    <Link to={item[0]}>
+      <Icon name={item[1]}/>
+    </Link>
+  </li>
+);
+
 const Nav = () => {
   return (
     <NavWrapper>
       <ul>
-        <li>
-          <Link to="/tags">
-            <Icon name="tag"/>
-          </Link>
-        </li>
-        <li>
-          <Link to="/money">
-            <Icon name="add"/>
-          </Link>
-        </li>
-        <li>
-          <Link to="/statistics">
-            <Icon name="chart-pie"/>
-          </Link>
-        </li>
+        {renderLinks}
       </ul>
     </NavWrapper>
   );
