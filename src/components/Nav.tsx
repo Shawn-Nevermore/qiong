@@ -1,13 +1,8 @@
 import styled from "styled-components";
 import {Link} from "react-router-dom";
 import React from "react";
+import Icon from "./Icon";
 
-/** TreeShaking不适用于require，否则由于svg-sprite-loader的优化，
- * 会删除没用到的svg report（这时候会用诸如log的方式强行使用svg）
- */
-require("icons/tag.svg");
-require("icons/add.svg");
-require("icons/chart-pie.svg");
 
 const NavWrapper = styled.div`
   line-height: 24px;
@@ -36,28 +31,22 @@ const Nav = () => {
       <ul>
         <li>
           <Link to="/tags">
-            <svg className="icon">
-              <use xlinkHref="#tag"/>
-            </svg>
+            <Icon name="tag"/>
           </Link>
         </li>
         <li>
           <Link to="/money">
-            <svg className="icon">
-              <use xlinkHref="#add"/>
-            </svg>
+            <Icon name="add"/>
           </Link>
         </li>
         <li>
           <Link to="/statistics">
-            <svg className="icon">
-              <use xlinkHref="#chart-pie"/>
-            </svg>
+            <Icon name="chart-pie"/>
           </Link>
         </li>
       </ul>
     </NavWrapper>
-  )
+  );
 }
 
 export default Nav;
