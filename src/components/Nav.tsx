@@ -2,6 +2,13 @@ import styled from "styled-components";
 import {Link} from "react-router-dom";
 import React from "react";
 
+/** TreeShaking不适用于require，否则由于svg-sprite-loader的优化，
+ * 会删除没用到的svg report（这时候会用诸如log的方式强行使用svg）
+ */
+require("icons/tag.svg");
+require("icons/add.svg");
+require("icons/chart-pie.svg");
+
 const NavWrapper = styled.div`
   line-height: 24px;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
@@ -11,8 +18,10 @@ const NavWrapper = styled.div`
     align-items: center;
     > li {
       flex: auto;
-      text-align: center;
+      display: flex;
       padding: 1rem;
+      justify-content: center;
+      align-items: center;
       //background-color: #409EFF;
       &:hover {
         //background-color: rgb(102,177,255);
@@ -26,13 +35,25 @@ const Nav = () => {
     <NavWrapper>
       <ul>
         <li>
-          <Link to="/tags">标签页</Link>
+          <Link to="/tags">
+            <svg className="icon">
+              <use xlinkHref="#tag"/>
+            </svg>
+          </Link>
         </li>
         <li>
-          <Link to="/money">记账页</Link>
+          <Link to="/money">
+            <svg className="icon">
+              <use xlinkHref="#add"/>
+            </svg>
+          </Link>
         </li>
         <li>
-          <Link to="/statistics">统计页</Link>
+          <Link to="/statistics">
+            <svg className="icon">
+              <use xlinkHref="#chart-pie"/>
+            </svg>
+          </Link>
         </li>
       </ul>
     </NavWrapper>
